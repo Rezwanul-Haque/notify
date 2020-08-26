@@ -1,6 +1,5 @@
 from sqlalchemy import (Column, Integer, MetaData, String, Table,
                         create_engine, JSON)
-
 from databases import Database
 
 from app.config import get_settings
@@ -16,9 +15,9 @@ user_devices = Table(
     'user_devices',
     metadata,
     Column("id", Integer, primary_key=True),
-    Column('user_id', Integer),
-    Column('token', String(255), unique=True),
-    Column('device_info', JSON)
+    Column('user_id', Integer, nullable=False),
+    Column('token', String(255), unique=True, nullable=False),
+    Column('device_info', JSON, nullable=True)
 )
 
 engine = create_engine(DATABASE_URL)

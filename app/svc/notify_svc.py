@@ -7,6 +7,4 @@ async def register_device(user_device: UserDevicePayload):
 
 
 async def send_message(message: MessagePayload):
-    success_count = await notify.send(message)
-
-    return success_count
+    return await notify.send(message)

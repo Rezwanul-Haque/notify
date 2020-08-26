@@ -1,3 +1,5 @@
+from fastapi import HTTPException
+
 from app.domains.notify import UserDevicePayload, MessagePayload
 from app.conn.db import user_devices
 from app.conn import db_manager
@@ -19,9 +21,13 @@ async def get_tokens(user_id):
 async def send(message: MessagePayload):
     tokens = await get_tokens(message.user_id)
     converted_tokens = [value for (value,) in tokens]
-    success_count = fcm_svc.send(message.message, message.notify.get("title"), message.notify.get("body"), converted_tokens)
 
-    return success_count
+    if len(converted_tokens) == 0:
+        raise HTTPException(status_code=404,
+                            detail=f'user id {message.user_id} don\'t have any registered device(s)')
 
-
-
+    return fcm_svc.send(message.message,
+                        message.notify.get("title"),
+                        message.notify.get("body"),
+                        converted_tokens
+                        )

@@ -1,9 +1,9 @@
 # Notify service
 FastAPI based application to send messages to user registered devices using cloud messaging service
-(For this application it uses FCM(Firebase Cloud Messaging)).
+(For this application I'll use Firebase Cloud Messaging also known as FCM).
 
 ## API Client
-Application gives two OpenAPI standard API Client to test APIs.
+Application gives two OpenAPI standard API Client for testing APIs.
 
 **Swagger** /docs
 
@@ -24,8 +24,6 @@ Application gives two OpenAPI standard API Client to test APIs.
           "device_info": {
               "device_type": "android",
               "ip": "127.0.0.1"
-              ...
-              // valid json
           }
       }
 ``` 
@@ -63,10 +61,27 @@ Application gives two OpenAPI standard API Client to test APIs.
 **Response**
     
 ```
-      {
-          "success_count": 1,
-          "message": "1 message(s) send successfully."
-      }
+   {
+        "error": {
+            "count": 2,
+            "message": [
+                {
+                    "cause": "Requested entity was not found.",
+                    "code": 404,
+                    "error_code": "UNREGISTERED",
+                    "status": "NOT_FOUND"
+                },
+                {
+                    "cause": "Requested entity was not found.",
+                    "code": 404,
+                    "error_code": "UNREGISTERED",
+                    "status": "NOT_FOUND"
+                }
+            ]
+        },
+        "message": "sent message to 1 device(s)",
+        "success_count": 1
+    }
 ```
 
 | No     | Table of content |
