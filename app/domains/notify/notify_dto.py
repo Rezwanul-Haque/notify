@@ -17,7 +17,7 @@ class UserDevicePayload(BaseModel):
 
 class ErrorResponse(BaseModel):
     count: int = 0
-    message: Optional[List[Dict]]
+    errors: Optional[List[Dict]]
 
 
 class Response(BaseModel):

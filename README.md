@@ -61,26 +61,26 @@ Application gives two OpenAPI standard API Client for testing APIs.
 **Response**
     
 ```
-   {
+    {
+        "success_count": 1,
+        "message": "sent message to 1 device(s)",
         "error": {
             "count": 2,
-            "message": [
+            "errors": [
                 {
-                    "cause": "Requested entity was not found.",
+                    "status": "NOT_FOUND",
                     "code": 404,
                     "error_code": "UNREGISTERED",
-                    "status": "NOT_FOUND"
+                    "cause": "Requested entity was not found."
                 },
                 {
-                    "cause": "Requested entity was not found.",
+                    "status": "NOT_FOUND",
                     "code": 404,
                     "error_code": "UNREGISTERED",
-                    "status": "NOT_FOUND"
+                    "cause": "Requested entity was not found."
                 }
             ]
-        },
-        "message": "sent message to 1 device(s)",
-        "success_count": 1
+        }
     }
 ```
 
